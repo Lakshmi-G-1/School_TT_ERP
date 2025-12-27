@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School ERP</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #f0f2f5; }
+        .box { background: white; padding: 40px; border-radius: 10px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn { background: #28a745; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; border: none; cursor: pointer; font-size: 16px; }
+        .link { display: block; margin-top: 20px; color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>School Timetable Dashboard</h1>
+        <p>Step 1: Add Classrooms/Teachers in Admin.</p>
+        <p>Step 2: Click the button below.</p>
+        
+        <form action="{% url 'generate' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn">🚀 GENERATE TIMETABLE NOW</button>
+        </form>
+
+        <a href="{% url 'view_timetable' %}" class="link">📅 View Current Schedule</a>
+        <a href="/admin/" class="link" style="color: #666;">⚙️ Go to Admin Panel</a>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: green; font-weight: bold;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
